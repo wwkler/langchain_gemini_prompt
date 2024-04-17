@@ -13,10 +13,10 @@ st = Storage()
 # 사용자가 입력해서 chat Bot을 사용한다.
 while True:
     pass
-
-    # chat - User Input과 LLM Answer를 어떻게 시스템 설정을 하는가에 대한 부분 (기능 맡으신 분이 구현 해야 합니다!)
     
-    # User Input을 판별하여 상황에 따라 while문을 종료한다. (if문 사용)
+    # Question Input을 받아서 상황에 따라 while문을 종료한다. (if문 사용)
+
+    # chat - Question Input과 LLM Answer를 어떻게 시스템 설정을 하는가에 대한 부분 (기능 맡으신 분이 구현 해야 합니다!
     
     # User Input을 바탕으로 Vector DB에서 가장 근접한 대답을 찾는 코드
     

@@ -1,4 +1,5 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import HumanMessage, SystemMessage
 
 class DrinkRecommendationSystem:
     def __init__(self, api_key):
@@ -6,7 +7,7 @@ class DrinkRecommendationSystem:
 
     def generate_response(self, user_input):
         # 사용자 입력을 이해하여 LLM으로 답변 생성
-        response = self.chatbot.invoke(input=user_input)
+        response = self.chatbot.invoke(input=user_input, system_prompt="음료 추천 시스템")
         return response.content
 
     def process_user_input(self):
@@ -15,6 +16,13 @@ class DrinkRecommendationSystem:
         
         # 사용자 입력을 전처리하고 답변 생성
         response = self.generate_response(user_input)
+
+        # Gemini API를 통해 답변이 제대로 생성되었는지 확인
+        if response.confidence > 0.5:
+            print("Gemini API를 통해 답변이 제대로 생성되었습니다.")
+        else:
+            print("Gemini API를 통해 답변이 생성되지 않았거나, 낮은 확신도를 갖고 있습니다.")
+        
         return response
 
 # API 키 설정
@@ -28,6 +36,41 @@ response = recommendation_system.process_user_input()
 
 # 생성된 응답 출력
 print("음료 추천 시스템: ", response)
+
+
+
+# 3
+# 
+# from langchain_google_genai import ChatGoogleGenerativeAI
+
+# class DrinkRecommendationSystem:
+#     def __init__(self, api_key):
+#         self.chatbot = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', api_key=api_key)
+
+#     def generate_response(self, user_input):
+#         # 사용자 입력을 이해하여 LLM으로 답변 생성
+#         response = self.chatbot.invoke(input=user_input)
+#         return response.content
+
+#     def process_user_input(self):
+#         # 사용자 입력 받기
+#         user_input = input("사용자: ")
+        
+#         # 사용자 입력을 전처리하고 답변 생성
+#         response = self.generate_response(user_input)
+#         return response
+
+# # API 키 설정
+# api_key = "YOUR_GEMINI_API_KEY"
+
+# # DrinkRecommendationSystem 클래스의 인스턴스 생성
+# recommendation_system = DrinkRecommendationSystem(api_key)
+
+# # 사용자 입력에 대한 응답 생성
+# response = recommendation_system.process_user_input()
+
+# # 생성된 응답 출력
+# print("음료 추천 시스템: ", response)
 
 # #1. class 함수로 음료추천시스템 input
 

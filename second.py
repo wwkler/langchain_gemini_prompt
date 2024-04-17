@@ -60,33 +60,77 @@ kcal = kcal_response.content
 sugar_response = chat.invoke(input=f"오늘 먹은 음료의 설탕 함량을 알려줘")
 sugar = sugar_response.content
 
-# 스타벅스에서 가장 칼로리가 낮은 음료
-low_kcal_response = chat.invoke(input=f"스타벅스에서 가장 칼로리가 낮은 음료를 알려줘")
-low_kcal_drink = low_kcal_response.content
-
-# 스타벅스에서 가장 설탕 함량이 낮은 음료
-low_sugar_response = chat.invoke(input=f"스타벅스에서 가장 설탕 함량이 낮은 음료를 알려줘")
-low_sugar_drink = low_sugar_response.content
-
 print(f"오늘 먹은 음료의 칼로리: {kcal}")
 print(f"오늘 먹은 음료의 설탕 함량: {sugar}")
-print(f"스타벅스에서 가장 칼로리가 낮은 음료: {low_kcal_drink}")
-print(f"스타벅스에서 가장 설탕 함량이 낮은 음료{low_sugar_drink}")
 
 
-
-response = []
-
-#검색
-input_prompt = input("User : ")
 
 
 #저장
-from langchain.memory import ChatMessageHistory
-demo_ephemeral_chat_history = ChatMessageHistory()
-demo_ephemeral_chat_history.add_user_message()
-demo_ephemeral_chat_history.add_ai_message()
-demo_ephemeral_chat_history.messages
+
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+store = {}
+
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+
+
+with_message_history = RunnableWithMessageHistory(
+    chain,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="history",
+)
+
+
+
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+
+store = {}
+
+
+def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+
+
+with_message_history = RunnableWithMessageHistory(
+    chain,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="history",
+)
+
+
+# Remembers
+with_message_history.invoke(
+    {"coffee": "name", "input": "What?"},
+    config={"configurable": {"session_id": "abc123"}},
+)
+
+ # New session_id --> does not remember.
+with_message_history.invoke(
+    {"coffee": "name", "input": "What?"},
+    config={"configurable": {"session_id": "def234"}},
+)
+
+
+
+# from langchain.memory import ChatMessageHistory
+# demo_ephemeral_chat_history = ChatMessageHistory()
+# demo_ephemeral_chat_history.add_user_message("다이어트할 때 마시기 좋은 음료를 추천해줘")
+# demo_ephemeral_chat_history.add_ai_message("저칼로리 음료는 다음과 같습니다. 물(0kal) 등이 있습니다.")
+# demo_ephemeral_chat_history.messages
+
 
 demo_ephemeral_chat_history = ChatMessageHistory()
 
@@ -102,3 +146,5 @@ while True:
             "messages": demo_ephemeral_chat_history.messages,
         }
     )
+
+

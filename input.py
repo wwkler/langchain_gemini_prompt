@@ -1,19 +1,18 @@
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+# from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-class SystemPromptSetting:
-    def __init__(self, text):
-        self.text = text
+# class SystemPromptSetting:
+#     def __init__(self, text):
+#         self.text = text
         
-    def promptSetting(self):
-        chat_prompt = ChatPromptTemplate.from_messages([
-                    ('system', '잘 대답해줘'),
-                    ('user', "{user_input}"),
-                ])
+#     def promptSetting(self):
+#         chat_prompt = ChatPromptTemplate.from_messages([
+#                     ('system', '잘 대답해줘'),
+#                     ('user', "{user_input}"),
+#                 ])
         
-        messages = chat_prompt.format_messages(user_input=self.text)
-        
-        return messages
-
+#         messages = chat_prompt.format_messages(user_input=self.text)
+         
+#         return messages
 
 
 # class DrinkRecommendationSystem:
@@ -87,37 +86,37 @@ class SystemPromptSetting:
 # # 생성된 응답 출력
 # print("음료 추천 시스템: ", response)
 
-# #1. class 함수로 음료추천시스템 input
+#1. class 함수로 음료추천시스템 input
 
-# from langchain_google_genai import ChatGoogleGenerativeAI
-# from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import HumanMessage, SystemMessage
 
-# class DrinkRecommendationSystem:
-#     def __init__(self):
-#         self.chatbot = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest')
+class DrinkRecommendationSystem:
+    def __init__(self):
+        self.chatbot = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest')
 
-#     def generate_response(self, user_input):
-#         # 사용자 입력을 이해하여 LLM으로 답변 생성
-#         response = self.chatbot.invoke(input=user_input)
-#         return response.content
+    def generate_response(self, user_input):
+        # 사용자 입력을 이해하여 LLM으로 답변 생성
+        response = self.chatbot.invoke(input=user_input)
+        return response.content
 
-#     def process_user_input(self, user_input):
-#         # 사용자 입력을 전처리하고 답변 생성
-#         response = self.generate_response(user_input)
-#         return response
+    def process_user_input(self, user_input):
+        # 사용자 입력을 전처리하고 답변 생성
+        response = self.generate_response(user_input)
+        return response
 
-# # DrinkRecommendationSystem 클래스의 인스턴스 생성
-# recommendation_system = DrinkRecommendationSystem()
+# DrinkRecommendationSystem 클래스의 인스턴스 생성
+recommendation_system = DrinkRecommendationSystem()
 
 
-# # 사용자 입력 받기
-# user_input = input("사용자: ")
+# 사용자 입력 받기
+user_input = input("사용자: ")
 
-# # 사용자 입력에 대한 응답 생성
-# response = recommendation_system.process_user_input(user_input)
+# 사용자 입력에 대한 응답 생성
+response = recommendation_system.process_user_input(user_input)
 
-# # 생성된 응답 출력
-# print("음료 추천 시스템: ", response)
+# 생성된 응답 출력
+print("음료 추천 시스템: ", response)
 
 
 #2.class함수로 정해진 값 출력해보기

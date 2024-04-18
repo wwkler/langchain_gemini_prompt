@@ -1,19 +1,19 @@
-# from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-# class SystemPromptSetting:
-#     def __init__(self, text):
-#         self.text = text
+class SystemPromptSetting:
+    def __init__(self, text):
+        self.text = text
         
-#     def promptSetting(self):
-#         chat_prompt = ChatPromptTemplate.from_messages([
-#                     ('system', '잘 대답해줘'),
-#                     ('user', "{user_input}"),
-#                 ])
+    def promptSetting(self):
+        chat_prompt = ChatPromptTemplate.from_messages([
+                    ('system', '잘 대답해줘'),
+                    ('user', "{user_input}"),
+                ])
         
-#         messages = chat_prompt.format_messages(user_input=self.text)
+        messages = chat_prompt.format_messages(user_input=self.text)
          
-#         return messages
-
+        return messages
+#@
 
 # class DrinkRecommendationSystem:
 #     def __init__(self, api_key):

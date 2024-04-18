@@ -33,13 +33,6 @@ while True:
 
     # User Input을 바탕으로 Vector DB에서 가장 근접한 대답을 찾는다.
     retriever = st.vector_db.as_retriever(search_type='mmr', search_kwargs={'k': 1})
-    # chat - Question Input과 LLM Answer를 어떻게 시스템 설정을 하는가에 대한 부분 (기능 맡으신 분이 구현 해야 합니다!
-    spt = SystemPromptSetting(text)
-    prompt = spt.promptSetting()
-    
-    # User Input을 바탕으로 Vector DB에서 가장 근접한 대답을 찾는 코드
-    retriever = st.vector_db.as_retriever(search_type='mmr', 
-                                          search_kwargs={'k': 1})
     response = retriever.invoke(input=text)
 
     content = response[0].page_content.replace("\n", "") # Vector DB로부터 질문에 따른 가장 가까운 대답

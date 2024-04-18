@@ -13,8 +13,8 @@ class Gemini:
         chat = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=1.0)
 
         # 2. 시스템 프롬프트 설정을 Gemini 모델에 반영한다.
-        chain = self.prompt | chat
-
+        chain = self.prompt | chat 
+            
         # 3. Gemini 모델에게 최종 대답을 얻는다.
         question = f"질문은 {self.text}이고 vector db로부터 받은 대답은 {self.vectorDBtext} 였는데 대답을 주세요"
         response = chain.invoke({"input": question, 

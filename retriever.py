@@ -21,7 +21,7 @@ class Save_Vector_DB:
         loader = WebBaseLoader(web_paths=self.urls)
         
         # RecursiveCharacterTextSplitter 세팅 
-        text_spliter = RecursiveCharacterTextSplitter(chunk_size=100, 
+        text_spliter = RecursiveCharacterTextSplitter(chunk_size=500, 
                                                       chunk_overlap=0)
         
         # 데이터를 수집한다.

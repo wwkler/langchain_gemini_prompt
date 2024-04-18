@@ -10,10 +10,10 @@ class Gemini:
 
     def call_gemini(self):
         #  1. Gemini 모델을 만든다.
-        chat = ChatGoogleGenerativeAI(model='gemini-1.5-pro-lates', temperature=1.0)
+        chat = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=1.0)
 
         # 2. 시스템 프롬프트 설정을 Gemini 모델에 반영한다.
-        chain = (self.prompt) | chat
+        chain = self.prompt | chat
 
         # 3. Gemini 모델에게 최종 대답을 얻는다.
         question = f"질문은 {self.text}이고 vector db로부터 받은 대답은 {self.vectorDBtext} 였는데 대답을 주세요"
@@ -22,10 +22,13 @@ class Gemini:
         answer = response.content
 
         # 4. Gemini한테 얻은 최종 대답을 활용해서 채팅 이력을 main.py에 있는 Storage 클래스의 chat_history 변수에 확장한다.
-        self.chat_history.extend([HumanMessage(content=question), response["answer"]])
+        self.chat_history.extend([HumanMessage(content=question), answer])
 
         # 5. Gemini한테 얻은 최종 대답을 main.py로 보낸다.
         return answer
+
+
+    
     
 # chat_history = []
 # question = "What is Task Decomposition?"

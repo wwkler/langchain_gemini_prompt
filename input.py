@@ -7,12 +7,14 @@ class SystemPromptSetting:
     def promptSetting(self):
         chat_prompt = ChatPromptTemplate.from_messages([
                     ('system', '잘 대답해줘'),
-                    ('user', "{user_input}"),
+                    ('user', f"{self.text}"),
                 ])
         
-        messages = chat_prompt.format_messages(user_input=self.text)
+        # messages = chat_prompt.format_messages(user_input=self.text)
         
-        return messages
+        # return messages
+
+        return chat_prompt
 
 
 

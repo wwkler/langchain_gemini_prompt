@@ -27,6 +27,7 @@ class Gemini:
         # 5. Gemini한테 얻은 최종 대답을 main.py로 보낸다.
         return answer
     
+    
 # chat_history = []
 # question = "What is Task Decomposition?"
 # ai_msg_1 = rag_chain.invoke({"input": question, 

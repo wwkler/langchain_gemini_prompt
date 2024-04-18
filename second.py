@@ -18,7 +18,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = ""
+    os.environ["GOOGLE_API_KEY"] = "AIzaSyDlmba06dnGqJTW4dw5C44Nba9MoUtY74w"
 
 
 
@@ -26,17 +26,6 @@ if "GOOGLE_API_KEY" not in os.environ:
 # Fat Secret API 주소 (영문 검색)
 fatsecret_url = "https://www.fatsecret.com/search?q=Starbucks"
 
-
-chat = ChatGoogleGenerativeAI(model='gemini-pro')
-
-
-
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ('system','andswer by fatsecret_url'),
-        MessagesPlaceholder(variable_name='message')
-    ]
-)
 
 chain = prompt | chat
 response = chain.invoke(
@@ -51,18 +40,6 @@ prompt = ChatPromptTemplate.from_messages(
         MessagesPlaceholder(variable_name="messages"),
     ]
 )
-
-# 오늘 먹은 음료의 칼로리
-kcal_response = chat.invoke(input=f"오늘 먹은 음료의 칼로리를 알려줘")
-kcal = kcal_response.content
-
-# 오늘 먹은 음료의 설탕 함량
-sugar_response = chat.invoke(input=f"오늘 먹은 음료의 설탕 함량을 알려줘")
-sugar = sugar_response.content
-
-print(f"오늘 먹은 음료의 칼로리: {kcal}")
-print(f"오늘 먹은 음료의 설탕 함량: {sugar}")
-
 
 
 
@@ -96,6 +73,14 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 store = {}
 
+from langchain.memory import ChatMessageHistory
+demo_ephemeral_chat_history = ChatMessageHistory()
+demo_ephemeral_chat_history.add_user_message()
+demo_ephemeral_chat_history.add_ai_message()
+demo_ephemeral_chat_history.messages
+
+demo_ephemeral_chat_history = ChatMessageHistory()
+
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
     if session_id not in store:
@@ -109,6 +94,7 @@ with_message_history = RunnableWithMessageHistory(
     input_messages_key="input",
     history_messages_key="history",
 )
+
 
 
 # Remembers
@@ -148,3 +134,4 @@ while True:
     )
 
 
+    #https://python.langchain.com/docs/expression_language/how_to/message_history/

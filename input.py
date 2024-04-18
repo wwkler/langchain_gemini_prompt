@@ -14,8 +14,6 @@ class SystemPromptSetting:
         
         return messages
 
-
-
 # class DrinkRecommendationSystem:
 #     def __init__(self, api_key):
 #         self.chatbot = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', api_key=api_key)

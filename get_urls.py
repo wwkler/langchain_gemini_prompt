@@ -17,6 +17,3 @@ class Url_Loader:
         urls = self.read_text_files()  
         
         return tuple(urls)
-    
-url_loader = Url_Loader()
-url_loader.get_urls()

@@ -21,15 +21,19 @@ class Save_Vector_DB:
         loader = WebBaseLoader(web_paths=self.urls)
         
         # RecursiveCharacterTextSplitter 세팅 
-        text_spliter = RecursiveCharacterTextSplitter(chunk_size=100, 
+        text_spliter = RecursiveCharacterTextSplitter(chunk_size=500, 
                                                       chunk_overlap=0)
         
         # 데이터를 수집한다.
+# <<<<<<< gemini
+       
+# =======
         text = loader.load()
     
         # 500글자씩 자르는데, 안겹치게 자름
         splits = text_spliter.split_documents(text)
     
+# >>>>>>> develop
         # embedding(벡터화) 해서 Vector DB를 생성하고 return 한다.
         vectordb = Chroma.from_documents(documents=splits,
                                          embedding=GoogleGenerativeAIEmbeddings(model="models/embedding-001"))

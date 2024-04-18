@@ -23,7 +23,6 @@ class Save_Vector_DB:
         # 데이터를 수집한다.
         text = self.loader.load()
 
-    
         # 500글자씩 자르는데, 안겹치게 자름
         splits = self.text_spliter.split_documents(text)
 

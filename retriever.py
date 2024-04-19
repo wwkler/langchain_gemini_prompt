@@ -1,20 +1,14 @@
 import os
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
-from langchain_core.prompts import SystemMessagePromptTemplate, ChatPromptTemplate, MessagesPlaceholder
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_text_splitters import CharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyPDFLoader,OnlinePDFLoader
-from langchain_community.document_loaders import UnstructuredPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 
 
 class Save_Vector_DB:
     def __init__(self):
         pass
         
-    # 30개의 url를 받아서 데이터를 수집하고 embedding해서 VectorDB에 저장하는 매서드
+    # PDF 파일을 바탕으로 텍스트를 읽고 그것을 embedding해서 VectorDB에 저장하는 매서드
     def save_db(self):
         if "GOOGLE_API_KEY" not in os.environ:
             os.environ["GOOGLE_API_KEY"] = "AIzaSyA0TiBpYfLhr8GY6zSZAtEKdkiw31wE4HU"

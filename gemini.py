@@ -23,6 +23,7 @@ class Gemini:
         response = retrieval_chain.invoke({"input": self.text, 
                                            "chat_history" : self.chat_history})
         
+        # 채팅 이력이 업데이트 되고 있는지를 확인하는 프린트 용도 
         print(response['chat_history'])
         
         # 4. Gemini한테 얻은 최종 대답을 활용해서 채팅 이력을 main.py에 있는 Storage 클래스의 chat_history 변수에 확장한다.
@@ -33,13 +34,3 @@ class Gemini:
         return response['answer']
 
 
-    
-    
-# chat_history = []
-# question = "What is Task Decomposition?"
-# ai_msg_1 = rag_chain.invoke({"input": question, 
-#                              "chat_history": chat_history})
-# chat_history.extend([HumanMessage(content=question), ai_msg_1["answer"]])
-# second_question = "What are common ways of doing it?"
-# ai_msg_2 = rag_chain.invoke({"input": second_question, "chat_history": chat_history})
-# print(ai_msg_2["answer"])

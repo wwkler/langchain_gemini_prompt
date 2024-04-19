@@ -1,4 +1,3 @@
-from get_urls import Url_Loader
 from retriever import Save_Vector_DB
 from input import SystemPromptSetting
 from gemini import Gemini

@@ -18,7 +18,6 @@ class Save_Vector_DB:
     def save_db(self):
         if "GOOGLE_API_KEY" not in os.environ:
             os.environ["GOOGLE_API_KEY"] = "AIzaSyA0TiBpYfLhr8GY6zSZAtEKdkiw31wE4HU"
-        
 
         # PDF 파일 세팅
         loader = PyPDFLoader("youye.pdf")  # PDF를 불러온다. loader 변수로 저장

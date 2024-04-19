@@ -12,12 +12,8 @@ class SystemPromptSetting:
         context: {context}
         input: {input}
         answer: """
-        
+       
         prompt = PromptTemplate.from_template(template) 
         return prompt
         
-        
-        
-        
-        
-        
+ 

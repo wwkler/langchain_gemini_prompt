@@ -13,15 +13,13 @@ class SystemPromptSetting:
         context: {context}
         input: {input}
         answer: """
-        
+       
         prompt = PromptTemplate.from_template(template) 
         return prompt
         
         
         
-        
-        
-        
+       
         # chat_prompt = ChatPromptTemplate.from_messages([
         #             ('system', '잘 대답해줘'),
         #             ('user', f"{self.text}"),
@@ -102,7 +100,7 @@ class SystemPromptSetting:
 # # 생성된 응답 출력
 # print("음료 추천 시스템: ", response)
 
-# #1. class 함수로 음료추천시스템 input
+#1. class 함수로 음료추천시스템 input
 
 # from langchain_google_genai import ChatGoogleGenerativeAI
 # from langchain_core.messages import HumanMessage, SystemMessage

@@ -1,20 +1,35 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.prompts import PromptTemplate
 
 class SystemPromptSetting:
     def __init__(self, text):
         self.text = text
         
     def promptSetting(self):
-        chat_prompt = ChatPromptTemplate.from_messages([
-                    ('system', '잘 대답해줘'),
-                    ('user', "{user_input}"),
-                ])
+        #Create the retrieval chain
+        template = """
+        You are a helpful AI assistant.
+        Answer based on the context provided.
+        context: {context}
+        input: {input}
+        answer: """
         
-        messages = chat_prompt.format_messages(user_input=self.text)
+        prompt = PromptTemplate.from_template(template) 
+        return prompt
         
-        return messages
-
-
+        
+        
+        
+        
+        
+        # chat_prompt = ChatPromptTemplate.from_messages([
+        #             ('system', '잘 대답해줘'),
+        #             ('user', f"{self.text}"),
+        #         ])
+        
+        # messages = chat_prompt.format_messages(user_input=self.text)
+        
+        # return messages
 
 # class DrinkRecommendationSystem:
 #     def __init__(self, api_key):
